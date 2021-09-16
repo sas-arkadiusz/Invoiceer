@@ -41,8 +41,6 @@ public class ExcelInvoiceDataReader {
         IntStream.range(1, numberOfInvoices + 1).forEach(rowNumber ->
                 invoices.add(getInvoiceFromRowExcelDataSheet(invoiceDataSheet, rowNumber)));
 
-        System.out.println(invoices.get(0));
-
         return invoices;
     }
 
