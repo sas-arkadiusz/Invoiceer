@@ -3,7 +3,9 @@ package pl.arkadiuszsas.invoiceer.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.arkadiuszsas.invoiceer.generator.GenerateInvoice;
 import pl.arkadiuszsas.invoiceer.model.Invoice;
+import pl.arkadiuszsas.invoiceer.model.factories.InvoiceFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/invoice")
 public class InvoiceController {
-
-    private List<Invoice> invoices = new ArrayList<>();
-
-    @GetMapping
-    public List<Invoice> temporaryMethodToDebug() {
-        return invoices;
-    }
+    private final List<Invoice> invoices = new ArrayList<>();
 
     /**
      * Method calls all the methods which are responsible for the generation of the Invoice.
@@ -27,8 +23,13 @@ public class InvoiceController {
      */
     @PostMapping
     public ResponseEntity generateInvoice(@RequestBody Invoice invoice) {
-        // Return statement
         invoices.add(invoice);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @PostMapping("/testInvoice")
+    public ResponseEntity generateTestInvoice() {
+        invoices.add(InvoiceFactory.produceValidInvoice());
         return ResponseEntity.ok(HttpStatus.OK);
     }
 

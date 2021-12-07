@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 @Setter
 @EqualsAndHashCode
 public class Company extends Contractor {
-    private String nip;
+    private final String nip;
 
     public Company(String fullName, Address address, String nip) {
         super(fullName, address);
