@@ -33,4 +33,4 @@ build/
 .vscode/
 
 ### Configuration ###
-./invoiceer/${project.build.directory}/
+./invoiceer/target/*
