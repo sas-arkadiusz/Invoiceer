@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-@Component
 public class ExcelInvoiceDataReader {
     private final String excelFilePath;
 

@@ -12,9 +12,9 @@ import java.util.regex.Pattern;
 @EqualsAndHashCode
 @ToString
 public class Address {
-    private String streetAddress;
-    private String postalCode;
-    private String city;
+    private final String streetAddress;
+    private final String postalCode;
+    private final String city;
 
     public Address(String streetAddress, String postalCode, String city) {
         this.streetAddress = streetAddress;
