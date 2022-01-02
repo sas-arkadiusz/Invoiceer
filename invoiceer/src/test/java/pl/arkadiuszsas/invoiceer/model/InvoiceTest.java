@@ -1,6 +1,5 @@
 package pl.arkadiuszsas.invoiceer.model;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pl.arkadiuszsas.invoiceer.model.contractors.Company;
 import pl.arkadiuszsas.invoiceer.model.contractors.Contractor;
@@ -14,6 +13,7 @@ import pl.arkadiuszsas.invoiceer.model.products.properties.VatRate;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,7 +28,7 @@ class InvoiceTest {
     final Address address = new Address("Street 1", "00-000", "City");
     final Contractor company = new Company("Company Name", address, "5842751979");
     final Contractor customer = new Contractor("Contractor Name", address);
-    final List<Product> products = Arrays.asList(new Product("Product Name", 1, Unit.ITEM, Gtu.GTU_01, 50.0, VatRate.VAT23));
+    final List<Product> products = Collections.singletonList(new Product("Product Name", 1, Unit.ITEM, Gtu.GTU_01, 50.0, VatRate.VAT23));
 
     @Test
     void invoiceIsBuiltCorrectlyWithCorrectProperties() {
@@ -75,15 +75,15 @@ class InvoiceTest {
         final Address localAddress = new Address("Street 1", "00-000", "City");
         final Contractor localCompany = new Company("Company Name", localAddress, "5842751979");
         final Contractor localCustomer = new Contractor("Contractor Name", localAddress);
-        final List<Product> localProducts = Arrays.asList(new Product("Product Name", 1, Unit.ITEM, Gtu.GTU_01, 50.0, VatRate.VAT23));
+        final List<Product> localProducts = Collections.singletonList(new Product("Product Name", 1, Unit.ITEM, Gtu.GTU_01, 50.0, VatRate.VAT23));
 
-        Assertions.assertTrue(invoicingDate.equals(invoice.getInvoicingDate()), "Invoicing dates aren't equal!");
-        Assertions.assertTrue(invoicingCity.equals(invoice.getInvoicingCity()), "Invoicing cities aren't equal!");
-        Assertions.assertTrue(deliveryDate.equals(invoice.getDeliveryDate()), "Delivery dates aren't equal!");
-        Assertions.assertTrue(invoiceNumber.equals(invoice.getInvoiceNumber()), "Invoicing numbers aren't equal!");
-        Assertions.assertTrue(localMethodOfPayment.equals(invoice.getMethodOfPayment()), "Method of payments aren't equal!");
-        Assertions.assertTrue(localCompany.equals(invoice.getVendor()), "Companies aren't equal!");
-        Assertions.assertTrue(localCustomer.equals(invoice.getCustomer()), "Customers aren't equal!");
-        Assertions.assertTrue(localProducts.equals(invoice.getProducts()), "List of products aren't equal!");
+        assertEquals(invoicingDate, invoice.getInvoicingDate(), "Invoicing dates aren't equal!");
+        assertEquals(invoicingCity, invoice.getInvoicingCity(), "Invoicing cities aren't equal!");
+        assertEquals(deliveryDate, invoice.getDeliveryDate(), "Delivery dates aren't equal!");
+        assertEquals(invoiceNumber, invoice.getInvoiceNumber(), "Invoicing numbers aren't equal!");
+        assertEquals(localMethodOfPayment, invoice.getMethodOfPayment(), "Method of payments aren't equal!");
+        assertEquals(localCompany, invoice.getVendor(), "Companies aren't equal!");
+        assertEquals(localCustomer, invoice.getCustomer(), "Customers aren't equal!");
+        assertEquals(localProducts, invoice.getProducts(), "List of products aren't equal!");
     }
 }
