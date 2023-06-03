@@ -32,7 +32,7 @@ class ExcelInvoiceDataReaderTest {
                 .paymentDate(LocalDate.of(2021, 9, 4))
                 .vendor(Constants.defaultVendor)
                 .customer(Contractor.builder()
-                    .fullName("Jan Kowalski")
+                    .fullName("Jan Kowalskii")
                     .address(new Address("Długa 1", "85-028", "Poznań"))
                     .build())
                 .products(new ArrayList<>())
